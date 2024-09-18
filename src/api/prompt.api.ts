@@ -1,3 +1,5 @@
+// src/api/prompt.api.ts
+
 import { ANTHROPIC_CONFIG } from '@/api/config';
 import { ApiSettingOptions } from '@/typings/common';
 
@@ -32,6 +34,7 @@ export const submitPrompt = async ({
     headers: {
       'x-api-key': apiKey,
       'Content-Type': 'application/json',
+      'anthropic-version': '2023-06-01', // Add this line
       accept: 'application/json',
     },
     signal: signal,
@@ -47,5 +50,6 @@ export const submitPrompt = async ({
     return response;
   } catch (error) {
     console.error(error);
+    throw error; // Re-throw the error so it can be handled by the calling function
   }
 };

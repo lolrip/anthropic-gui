@@ -1,4 +1,12 @@
-import { ChangeEvent, FormEvent, useCallback, useRef, useState } from 'react';
+// src/pages/AuthPage/AuthPage.tsx
+
+import React, {
+  ChangeEvent,
+  FormEvent,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
 
 import Stack from '@mui/material/Stack';
 import { useSelector } from 'react-redux';
@@ -18,6 +26,7 @@ import styles from './AuthPage.module.scss';
 export const AuthPage = () => {
   const [apiKey, setApiKey] = useState('');
   const [invalidKey, setInvalidKey] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const model = useSelector(selectApiModel);
 
   const navigate = useNavigate();
@@ -44,6 +53,7 @@ export const AuthPage = () => {
     }
 
     setInvalidKey(false);
+    setErrorMessage('');
   }, []);
 
   const validateApiKey = useCallback(
@@ -61,9 +71,15 @@ export const AuthPage = () => {
         if (response?.ok) {
           return true;
         } else {
+          const errorData = await response?.json();
+          setErrorMessage(errorData?.error?.message || 'Invalid API Key');
           return false;
         }
       } catch (error) {
+        console.error('API Key validation error:', error);
+        setErrorMessage(
+          'An error occurred while validating the API Key. Please try again.',
+        );
         return false;
       }
     },
@@ -83,6 +99,7 @@ export const AuthPage = () => {
         }
       } else {
         setInvalidKey(true);
+        setErrorMessage('API Key must be longer than 10 characters');
       }
     },
     [apiKey, validateApiKey, dispatch, navigate],
@@ -111,7 +128,7 @@ export const AuthPage = () => {
               {apiKey.length > 0 && invalidKey && (
                 <div>
                   <IconComponent type="warning" />
-                  <span className={styles.textInvalidKey}>Invalid key</span>
+                  <span className={styles.textInvalidKey}>{errorMessage}</span>
                 </div>
               )}
             </div>
