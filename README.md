@@ -96,7 +96,6 @@ yarn package
 
 This will generate executable files for your OS in the `dist` folder.
 
-Download distribution kits for Windows or Linux [here](https://github.com/ezetech/anthropic-gui/releases/tag/release-v1.0.1)
 
 ## Hotkeys 🔥
 
@@ -132,11 +131,9 @@ and then press 'Enter'
 
 ## Contributing 🤝
 
-The app was built by [Aleph One](https://aleph1.io/). We welcome all contributions from the community. If you'd like to contribute, here's how you can help:
+The app was built (and abandoned) by [Aleph One](https://aleph1.io/). 
 
-- **Reporting Bugs:** If you encounter any bugs, please file an issue in our GitHub repository. Make sure to include as many details as possible to help us reproduce the bug, such as your operating system, browser version, steps to reproduce, and any error messages.
-- **Suggesting Enhancements:** If you have ideas for new features or improvements, feel free to open an issue. Describe your idea in as much detail as possible.
-- **Code Contributions:** If you'd like to write code to fix bugs or implement new features, you're more than welcome! Simply fork our repository, make your changes, and submit a pull request. Please make sure your code follows our style guide and include tests where possible.
+I am trying to revive it but I am not a pro dev nor am I a node dev. I welcome any pull requests/changes!
 
 ## License 🗒️
 
